@@ -1,0 +1,123 @@
+@import "variables";
+// Style tool: https://www.cssportal.com/style-input-range/
+
+@mixin thumb($color, $explorer: "") {
+  height: 24px;
+  width: 32px;
+  border: none;
+  border-radius: 8px;
+  background: $color;
+  box-shadow: 0px 2px 8px -2px darken($color, 15);
+
+  @if $explorer == "chrome" {
+    -webkit-appearance: none;
+    margin-top: -8px;
+  } @else if $explorer == "ms" {
+    margin-top: 1px;
+  }
+}
+
+@mixin track($color, $explorer: "") {
+  width: 100%;
+  height: 8px;
+  background: $color;
+  border: none;
+  border-radius: 8px;
+  box-shadow: none;
+  animate: 0.2s;
+
+  @if ($explorer == "ms") {
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+}
+
+.slider {
+  -webkit-appearance: none;
+  background: $color-5;
+
+  &.on {
+    // Thumb
+    &::-webkit-slider-thumb {
+      @include thumb($color-4, "chrome");
+    }
+    &::-moz-range-thumb {
+      @include thumb($color-4);
+    }
+    &::-ms-thumb {
+      @include thumb($color-4, "ms");
+    }
+
+    // Track
+    &::-moz-range-track {
+      @include track($color-7);
+    }
+    &::-webkit-slider-runnable-track {
+      @include track($color-7);
+    }
+    &::-ms-track {
+      @include track($color-7, "ms");
+    }
+  }
+
+  &.off {
+    // Thumb
+    &::-webkit-slider-thumb {
+      @include thumb($color-6, "chrome");
+    }
+    &::-moz-range-thumb {
+      @include thumb($color-6);
+    }
+    &::-ms-thumb {
+      @include thumb($color-6, "ms");
+    }
+
+    // Track
+    &::-moz-range-track {
+      @include track($color-7);
+    }
+    &::-webkit-slider-runnable-track {
+      @include track($color-7);
+    }
+    &::-ms-track {
+      @include track($color-7, "ms");
+    }
+  }
+
+  &::-ms-fill-lower {
+    background: $color-7;
+    border: none;
+    border-radius: 16px;
+    box-shadow: none;
+  }
+
+  &::-ms-fill-upper {
+    background: $color-7;
+    border: none;
+    border-radius: 16px;
+    box-shadow: none;
+  }
+  
+  &:hover {
+    cursor: grab;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  // Focus
+  &:focus {
+    outline: none;
+  }
+  &:focus::-webkit-slider-runnable-track {
+    background: $color-7;
+  }
+  &:focus::-ms-fill-lower {
+    background: $color-7;
+  }
+  &:focus::-ms-fill-upper {
+    background: $color-7;
+  }
+}

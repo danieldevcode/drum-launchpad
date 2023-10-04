@@ -1,0 +1,9 @@
+.pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  max-width: 768px;
+  gap: 16px;
+  padding: 24px;
+}

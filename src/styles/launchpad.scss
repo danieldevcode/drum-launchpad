@@ -1,0 +1,9 @@
+.launchpad {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 168px auto;
+  align-items: center;
+  justify-items: center;
+  height: 100%;
+  user-select: none;
+}

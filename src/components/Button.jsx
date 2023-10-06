@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/button.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function Button({ isOn, text, color, size, onClick, icon }) {
+function Button({ content, onClick, className }) {
   return (
-    <div className={`button ${size} ${isOn ? color : "off"}`} onClick={onClick}>
-      {text ? <p>{text}</p> : null}
-      {icon ? <FontAwesomeIcon icon={icon} /> : null}
-    </div>
+    <button className={`button ${className}`} onClick={onClick}>
+      {content}
+    </button>
   );
 }
 

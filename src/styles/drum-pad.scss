@@ -12,31 +12,45 @@
   }
 }
 
-.button {
+.drum-pad {
   display: flex;
-  justify-content: center;
-  align-items: center;
-
-  height: 54px;
-  width: 72px;
+  justify-content: flex-start;
+  align-content: flex-start;
+  aspect-ratio: 1 / 1;
+  font-size: 20px;
   padding: 12px;
-
   font-family: $primary-font;
   font-weight: bold;
-  font-size: 16px;
-
   border-radius: 8px;
   background-color: $color-7;
 
-  &.on {
+  svg {
+    width: 100%;
+    align-self: center;
+    font-size: 20px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.color-1 {
+    @include btnStyle($color-1);
+  }
+
+  &.color-2 {
+    @include btnStyle($color-2);
+  }
+
+  &.color-3 {
+    @include btnStyle($color-3);
+  }
+
+  &.color-4 {
     @include btnStyle($color-4);
   }
 
   &.off {
     @include btnStyle($color-6);
-  }
-
-  &:hover {
-    cursor: pointer;
   }
 }

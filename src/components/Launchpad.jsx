@@ -6,19 +6,33 @@ import Pad from "./Pad";
 function Launchpad() {
   const [isOn, setIsOn] = useState(true);
   const [screenText, setScreenText] = useState("");
+  const [bank, setBank] = useState("Bank 1");
 
-  useEffect(function onLoad() {
-    document.addEventListener("keypress", ({ key }) => keyShortcut(key));
-    return () =>
-      document.removeEventListener("keypress", ({ key }) => keyShortcut(key));
-  }, []);
+  useEffect(
+    function keyListener() {
+      if (isOn) {
+        document.addEventListener("keydown", keyShortcut);
+      } else {
+        document.removeEventListener("keydown", keyShortcut);
+      }
+      return () => document.removeEventListener("keydown", keyShortcut);
+    },
+    [isOn]
+  );
 
-  function keyShortcut(key) {
-    const button = document.getElementById(key);
-    if (button) {
-      // TODO: change style
-      // TODO: check the react-hotkeys
-      button.click();
+  function keyShortcut({ key }) {
+    const audioElement = document.getElementById(key.toUpperCase());
+    if (audioElement) {
+      const buttonElement = audioElement.parentElement;
+      const buttonColor = buttonElement.getAttribute("data-color");
+
+      // Clicked style control
+      buttonElement.classList.add(`shortcut-${buttonColor}`);
+      setTimeout(() => {
+        buttonElement.classList.remove(`shortcut-${buttonColor}`);
+      }, 100);
+
+      buttonElement.click();
     }
   }
 
@@ -29,8 +43,10 @@ function Launchpad() {
         setIsOn={setIsOn}
         screenText={screenText}
         setScreenText={setScreenText}
+        bank={bank}
+        setBank={setBank}
       />
-      <Pad isOn={isOn} setScreenText={setScreenText} />
+      <Pad isOn={isOn} setScreenText={setScreenText} bank={bank} />
     </div>
   );
 }

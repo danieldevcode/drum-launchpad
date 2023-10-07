@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "../styles/drum-pad.scss";
 
 function DrumPad({ isOn, text, color, audioSrc, setScreenText }) {
@@ -19,15 +19,11 @@ function DrumPad({ isOn, text, color, audioSrc, setScreenText }) {
     <button
       id={getSampleName(audioSrc)}
       className={`drum-pad ${isOn ? color : "off disabled"}`}
+      data-color={color}
       onClick={isOn ? playSample : null}
     >
       <p>{text}</p>
-      <audio
-        id={text}
-        className="clip"
-        ref={audioRef}
-        src={audioSrc}
-      ></audio>
+      <audio id={text} className="clip" ref={audioRef} src={audioSrc}></audio>
     </button>
   );
 }

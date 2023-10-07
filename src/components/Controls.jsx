@@ -6,10 +6,18 @@ import Slider from "./Slider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 
-function Controls({ isOn, setIsOn, screenText, setScreenText }) {
-  function powerBtnFunc() {
+function Controls({ isOn, setIsOn, screenText, setScreenText, bank, setBank }) {
+  function powerHandler() {
     setIsOn((prev) => !prev);
     setScreenText("DRUM LAUNCHPAD");
+  }
+
+  function bankHandler() {
+    setBank((prev) => {
+      const newBank = prev == "Bank 1" ? "Bank 2" : "Bank 1";
+      setScreenText(newBank);
+      return newBank;
+    });
   }
 
   return (
@@ -17,11 +25,15 @@ function Controls({ isOn, setIsOn, screenText, setScreenText }) {
       <div className="controls">
         <Button
           content={<FontAwesomeIcon icon={faPowerOff} />}
-          onClick={powerBtnFunc}
+          onClick={powerHandler}
           className={isOn ? "on" : "off"}
         />
         <Screen isOn={isOn} screenText={screenText} />
-        <Button content="BANK" className={isOn ? "on" : "off disabled"} />
+        <Button
+          content="BANK"
+          onClick={bankHandler}
+          className={isOn ? "on" : "off disabled"}
+        />
         <Slider isOn={isOn} setScreenText={setScreenText} />
       </div>
     </div>

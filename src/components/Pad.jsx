@@ -12,63 +12,63 @@ function Pad({ isOn, setScreenText, bank }) {
         isOn={isOn}
         text="Q"
         color="color-1"
-        audioSrc={`/samples/${samples[0]}`}
+        audioSrc={samples[0]}
         setScreenText={setScreenText}
       />
       <DrumPad
         isOn={isOn}
         text="W"
         color="color-1"
-        audioSrc={`/samples/${samples[1]}`}
+        audioSrc={samples[1]}
         setScreenText={setScreenText}
       />
       <DrumPad
         isOn={isOn}
         text="E"
         color="color-1"
-        audioSrc={`/samples/${samples[2]}`}
+        audioSrc={samples[2]}
         setScreenText={setScreenText}
       />
       <DrumPad
         isOn={isOn}
         text="A"
         color="color-2"
-        audioSrc={`/samples/${samples[3]}`}
+        audioSrc={samples[3]}
         setScreenText={setScreenText}
       />
       <DrumPad
         isOn={isOn}
         text="S"
         color="color-2"
-        audioSrc={`/samples/${samples[4]}`}
+        audioSrc={samples[4]}
         setScreenText={setScreenText}
       />
       <DrumPad
         isOn={isOn}
         text="D"
         color="color-2"
-        audioSrc={`/samples/${samples[5]}`}
+        audioSrc={samples[5]}
         setScreenText={setScreenText}
       />
       <DrumPad
         isOn={isOn}
         text="Z"
         color="color-3"
-        audioSrc={`/samples/${samples[6]}`}
+        audioSrc={samples[6]}
         setScreenText={setScreenText}
       />
       <DrumPad
         isOn={isOn}
         text="X"
         color="color-3"
-        audioSrc={`/samples/${samples[7]}`}
+        audioSrc={samples[7]}
         setScreenText={setScreenText}
       />
       <DrumPad
         isOn={isOn}
         text="C"
         color="color-3"
-        audioSrc={`/samples/${samples[8]}`}
+        audioSrc={samples[8]}
         setScreenText={setScreenText}
       />
     </div>

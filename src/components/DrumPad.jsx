@@ -3,7 +3,7 @@ import "../styles/drum-pad.scss";
 
 function DrumPad({ isOn, text, color, audioSrc, setScreenText }) {
   const audioRef = useRef();
-
+  
   function playSample() {
     if (!audioRef.current.ended) audioRef.current.load();
     audioRef.current.play();

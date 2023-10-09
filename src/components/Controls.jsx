@@ -6,7 +6,7 @@ import Slider from "./Slider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 
-function Controls({ isOn, setIsOn, screenText, setScreenText, bank, setBank }) {
+function Controls({ isOn, setIsOn, screenText, setScreenText, setBank }) {
   function powerHandler() {
     setIsOn((prev) => !prev);
     setScreenText("DRUM LAUNCHPAD");

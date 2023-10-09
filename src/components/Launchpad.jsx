@@ -8,31 +8,38 @@ function Launchpad() {
   const [screenText, setScreenText] = useState("");
   const [bank, setBank] = useState("Bank 1");
 
-  useEffect(
-    function keyListener() {
-      if (isOn) {
-        document.addEventListener("keydown", keyShortcut);
-      } else {
-        document.removeEventListener("keydown", keyShortcut);
-      }
-      return () => document.removeEventListener("keydown", keyShortcut);
-    },
-    [isOn]
-  );
+  useEffect(function keyListener() {
+    if (isOn) {
+      document.addEventListener("keyup", handleShortcut);
+      document.addEventListener("keydown", handleStyle);
+    } else {
+      document.removeEventListener("keyup", handleShortcut);
+      document.removeEventListener("keydown", handleStyle);
+    }
+    return () => {
+      document.removeEventListener("keyup", handleShortcut);
+      document.removeEventListener("keydown", handleStyle);
+    };
+  },[isOn]);
 
-  function keyShortcut({ key }) {
+  function handleShortcut({ key }) {
+    const audioElement = document.getElementById(key.toUpperCase());
+    if (audioElement) {
+      const buttonElement = audioElement.parentElement;
+      handleStyle({ key }, true);
+      buttonElement.click();
+    }
+  }
+
+  function handleStyle({ key }, removeStyle) {
     const audioElement = document.getElementById(key.toUpperCase());
     if (audioElement) {
       const buttonElement = audioElement.parentElement;
       const buttonColor = buttonElement.getAttribute("data-color");
 
-      // Clicked style control
-      buttonElement.classList.add(`shortcut-${buttonColor}`);
-      setTimeout(() => {
+      if (removeStyle)
         buttonElement.classList.remove(`shortcut-${buttonColor}`);
-      }, 100);
-
-      buttonElement.click();
+      else buttonElement.classList.add(`shortcut-${buttonColor}`);
     }
   }
 
@@ -43,7 +50,6 @@ function Launchpad() {
         setIsOn={setIsOn}
         screenText={screenText}
         setScreenText={setScreenText}
-        bank={bank}
         setBank={setBank}
       />
       <Pad isOn={isOn} setScreenText={setScreenText} bank={bank} />
